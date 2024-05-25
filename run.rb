@@ -5,7 +5,7 @@ require 'logger'
 require 'json'
 
 LOGGER = Logger.new(File.expand_path('run.log', __dir__), 'daily')
-VALID_DOMAINS = File.read(File.expand_path('valid-emails.conf', __dir__)).split("\n")
+VALID_DOMAINS = File.read(File.expand_path('valid-domains.conf', __dir__)).split("\n")
 GET_CREDENTIALS = File.dirname(File.expand_path(__FILE__)) << "/login.sh"
 CREDENTIALS = JSON.parse(IO.popen(GET_CREDENTIALS).read.strip)
 
@@ -22,7 +22,7 @@ def process_messages(imap)
     data = imap.fetch(message_id, 'BODY.PEEK[HEADER.FIELDS (From)]').first
     from = data.attr.values.first.strip
     
-    if VALID_DOMAINS.any? {|valid_email| from.include?(valid_email)}
+    if VALID_DOMAINS.any? {|domain| from.include?(domain)}
       LOGGER.info "Moving to Inbox: [#{message_id}] #{from}"
   
       imap.copy(message_id, 'Inbox')
