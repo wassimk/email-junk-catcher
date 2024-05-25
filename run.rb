@@ -6,7 +6,7 @@ require 'json'
 
 LOGGER = Logger.new(File.expand_path('run.log', __dir__), 'daily')
 VALID_DOMAINS = File.read(File.expand_path('valid-emails.conf', __dir__)).split("\n")
-GET_CREDENTIALS = File.dirname(File.expand_path(__FILE__)) << "/email_login.sh"
+GET_CREDENTIALS = File.dirname(File.expand_path(__FILE__)) << "/login.sh"
 CREDENTIALS = JSON.parse(IO.popen(GET_CREDENTIALS).read.strip)
 
 def login_to_imap
