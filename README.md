@@ -49,4 +49,13 @@ Anytime you need an e-mail that goes to spam that you care about, add the domain
 
 #### Log Rotation
 
-The log file will get big. Consider doing something about it.
+One option is [`logrotate`](https://github.com/logrotate/logrotate). Once installed it's managed by creating a file per set of rotations in the configuration folder. For example, install it via `brew` and add an `email-junk-catcher` file to `/opt/homebrew/etc/logrotate.d` with the following contents:
+
+```
+/Users/you/email-junk-catcher/logs/*.log
+{
+   daily
+   rotate 30
+   missingok
+}
+```
