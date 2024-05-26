@@ -4,7 +4,7 @@ require 'net/imap'
 require 'logger'
 require 'json'
 
-LOGGER = Logger.new(File.expand_path('run.log', __dir__), 'daily')
+LOGGER = Logger.new(File.expand_path('logs/run.log', __dir__), 'daily')
 VALID_DOMAINS = File.read(File.expand_path('valid-domains.conf', __dir__)).split("\n")
 GET_SERVER = File.dirname(File.expand_path(__FILE__)) << "/server.sh"
 SERVER = JSON.parse(IO.popen(GET_SERVER).read.strip)
