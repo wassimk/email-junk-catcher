@@ -20,8 +20,8 @@ Next, provide a way to get the email account connection details and login creden
   "host": "secure.myemailserver.com",
   "username": "me@email.com",
   "password": "password",
-  "port": "993",
-  "ssl": "yes"
+  "port": 993,
+  "ssl": true
 }
 ```
 
@@ -49,7 +49,9 @@ Anytime you need an e-mail that goes to spam that you care about, add the domain
 
 #### Log Rotation
 
-One option is [`logrotate`](https://github.com/logrotate/logrotate). Once installed it's managed by creating a file per set of rotations in the configuration folder. For example, install it via `brew` and add an `email-junk-catcher` file to `/opt/homebrew/etc/logrotate.d` with the following contents:
+One option for rotating the log files is [`logrotate`](https://github.com/logrotate/logrotate). Once installed, it's managed by creating a configuration file per set of logs needing rotation.
+
+For example, install it via `brew install logrotate` and add an `email-junk-catcher` file to `/opt/homebrew/etc/logrotate.d/` with the following contents:
 
 ```
 /Users/you/email-junk-catcher/logs/*.log
