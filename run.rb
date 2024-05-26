@@ -6,12 +6,12 @@ require 'json'
 
 LOGGER = Logger.new(File.expand_path('run.log', __dir__), 'daily')
 VALID_DOMAINS = File.read(File.expand_path('valid-domains.conf', __dir__)).split("\n")
-GET_CREDENTIALS = File.dirname(File.expand_path(__FILE__)) << "/login.sh"
-CREDENTIALS = JSON.parse(IO.popen(GET_CREDENTIALS).read.strip)
+GET_SERVER = File.dirname(File.expand_path(__FILE__)) << "/server.sh"
+SERVER = JSON.parse(IO.popen(GET_SERVER).read.strip)
 
 def login_to_imap
-  imap = Net::IMAP.new('secure.emailsrvr.com', port: 993, ssl: true)
-  imap.login(CREDENTIALS['username'], CREDENTIALS['password'])
+  imap = Net::IMAP.new(SERVER['host'], port: SERVER['port'], ssl: SERVER['ssl'])
+  imap.login(SERVER['username'], SERVER['password'])
   imap
 end
 

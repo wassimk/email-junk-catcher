@@ -1,6 +1,6 @@
 ## email-junk-catcher script
 
-The best spam tool I've ever used just allow-listed a set of domains. 
+The best spam tool I've ever used allow-listed a set of domains. 
 
 So, I execute this simple shell script via a `cron` job every few minutes to move messages I care about from my SPAM folder back into the Inbox based on the e-mailed from domain name.
 
@@ -13,12 +13,17 @@ gh repo clone wassimk/email-junk-catcher
 cd email-junk-catcher
 ```
 
-Next, provide a way to get the login credentials for the email account. This `./login.sh` script should output a JSON hash with `username` and `password` attributes.
+Next, provide a way to get the email account connection details and login credentials. This `./server.sh` script should output a JSON hash with `username` and `password` attributes. Executing the script should return JSON.
 
-`````shell
-$ ./login.sh
-{ username: 'me@email.com', password: 'pass' }
-`````
+```json
+{
+  "host": "secure.myemailserver.com",
+  "username": "me@email.com",
+  "password": "password",
+  "port": "993",
+  "ssl": "yes"
+}
+```
 
 Now, create the valid domains file with each line containing a domain that starts with an @, e.g., *@yahoo.com*.
 
@@ -28,7 +33,7 @@ touch valid-domains.conf
 
 Next, open your user's `cron` table to schedule the job.
 
-```
+```shell
 crontab -e
 ```
 
