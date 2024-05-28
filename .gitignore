@@ -3,3 +3,4 @@
 *.sh
 *.conf
 .ruby-version
+logs/
