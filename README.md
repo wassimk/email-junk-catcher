@@ -25,6 +25,12 @@ Next, provide a way to get the email account connection details and login creden
 }
 ```
 
+Next, make sure the scripts are only executable by your user account:
+
+```shell
+chmod 500 run.rb server.sh
+```
+
 Now, create the valid domains file with each line containing a domain that starts with an @, e.g., *@yahoo.com*.
 
 ```shell
