@@ -13,7 +13,7 @@ gh repo clone wassimk/email-junk-catcher
 cd email-junk-catcher
 ```
 
-Next, provide a way to get the email account connection details and login credentials. This `./server.sh` script should output a JSON hash with `username` and `password` attributes. Executing the script should return JSON.
+Next, provide a way to get the email account connection details and login credentials. This `./server.sh` script should output a JSON hash of this shape.
 
 ```json
 {
